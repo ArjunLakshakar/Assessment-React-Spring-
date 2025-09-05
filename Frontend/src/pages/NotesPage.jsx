@@ -8,7 +8,7 @@ export default function NotesPage() {
   const [notes, setNotes] = useState([]);
   const [editingNote, setEditingNote] = useState(null);
 
-  const baseURL = "http://localhost:9090/api/notes";
+  const baseURL = "http://localhost:8080/api/notes";
 
   useEffect(() => {
     fetchNotes();
