@@ -8,7 +8,7 @@ export default function NotesPage() {
   const [notes, setNotes] = useState([]);
   const [editingNote, setEditingNote] = useState(null);
 
-  const baseURL = "https://assessment-react-spring-1.onrender.com/api/notes";
+  const baseURL = "https://assessment-react-spring-2.onrender.com/api/notes";
 
   useEffect(() => {
     fetchNotes();
