@@ -1,14 +1,22 @@
-# Use Java 17
+# Use OpenJDK 17
 FROM eclipse-temurin:17-jdk
 
 # Set working directory
 WORKDIR /app
 
-# Copy project jar from target
-COPY target/*.jar app.jar
+# Copy Maven wrapper and pom.xml
+COPY mvnw .
+COPY .mvn .mvn
+COPY pom.xml .
 
-# Expose port
-EXPOSE 8080
+# Download dependencies
+RUN ./mvnw dependency:go-offline
 
-# Run the jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Copy source code
+COPY src src
+
+# Build the application
+RUN ./mvnw clean package -DskipTests
+
+# Run the app
+CMD ["java", "-jar", "target/Backend-0.0.1-SNAPSHOT.jar"]
